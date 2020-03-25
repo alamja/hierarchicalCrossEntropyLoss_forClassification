@@ -105,6 +105,9 @@ celerybeat.pid
 # Logs for Tensorboard
 runs/
 
+# trained models
+trained/
+
 # Environments
 .env
 .venv
