@@ -1,7 +1,8 @@
 # hierarchicalCrossEntropyLoss_forClassification
 Hierarchical CrossEntropy Loss function on PyTorch for taking account hierarchical categories.  
-I sometimes want to set hierarchical structured categories to our dataset. But, there are no original PyTorch Lossfunctions which allows me to set them.
 
+## Motivation
+I sometimes want to set hierarchical structured categories to our dataset. For example, when some labels are not completely independent, I believe we should measure the distance from the estimated labels to the right labels. The one method is to train a model as a Regression. However, there are no original PyTorch Lossfunctions which allows me to set them.
 
 ## Environments
 - Python 3+
@@ -95,8 +96,20 @@ criterion = h_loss(coefficient, h_dict, sample_weights, device=device)
 ## Results
 
 * PyTorch Original CrossEntropy Loss
+![PyTorch Original CrossEntropy Loss](/images/CELoss.png)
+
 * PyTorch Original CrossEntropy Loss with Class weight
-* Hierarchical CrossEntropy Loss 
+![PyTorch Original CrossEntropy Loss with Class weight](/images/WeightedCELoss.png)
+
 * Hierarchical CrossEntropy Loss with Class weight (Coefficient=[0.34, 0.33, 0.33])
+![Hierarchical CrossEntropy Loss with Class weight (Coefficient=[0.34, 0.33, 0.33])](/images/HierarchicalCELoss(Conf0.34_0.33_0.33).png)
+
 * Hierarchical CrossEntropy Loss with Class weight (Coefficient=[0.50, 0.10, 0.40])
+![Hierarchical CrossEntropy Loss with Class weight (Coefficient=[0.50, 0.10, 0.40])](/images/HierarchicalCELoss(Conf0.5_0.1_0.4).png)
+
 * Trained as Regression using MSE Loss
+![Trained as Regression using MSE Loss](/images/Regression.png)
+
+## Conclusion
+
+In this experimentations, achieve to improve the accuracy. 
