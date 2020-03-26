@@ -2,11 +2,14 @@
 Hierarchical CrossEntropy Loss function on PyTorch for taking account hierarchical categories.  
 
 ## Motivation
-I sometimes want to set hierarchical structured categories to our dataset. For example, when some labels are not completely independent, I believe we should measure the distance from the estimated labels to the right labels. The one method is to train a model as a Regression. However, there are no original PyTorch Lossfunctions which allows me to set them.
+I sometimes want to set hierarchical structured categories to our dataset. For example, when the labels are not completely independent (i.g. Progress recognition. When the labels are continuous numbers, and they have a connection with each others.), I believe we should measure the distance from the estimated labels to the right labels. The one conceivable way is to train the model as a Regression using MSE or the other Metrics for Regression. Because, it allows us to measure the difference between the answer and the estimated label. I guess it would be useful in some datasets.  
+However, I tried this approach for my own dataset. It didn't work well. Also, I couldn't find such a Loss function in PyTorch original implementation. So, it motivated me to develop custom Loss Function.
 
 ## Environments
+I just used this version. I haven't confirmed if it works on the other versions.
 - Python 3+
-- PyTorch 1.4 (I just used this version, haven't confirmed if it works on previous versions.)  
+- PyTorch 1.4
+- Scikit-Learn 0.22.1
 
 ## Supposed actual directory layout
     .
@@ -95,6 +98,9 @@ criterion = h_loss(coefficient, h_dict, sample_weights, device=device)
 
 ## Results
 
+* Trained as Regression using MSE Loss
+![Trained as Regression using MSE Loss](/images/Regression.png)
+
 * PyTorch Original CrossEntropy Loss
 ![PyTorch Original CrossEntropy Loss](/images/CELoss.png)
 
@@ -107,9 +113,6 @@ criterion = h_loss(coefficient, h_dict, sample_weights, device=device)
 * Hierarchical CrossEntropy Loss with Class weight (Coefficient=[0.50, 0.10, 0.40])
 ![Hierarchical CrossEntropy Loss with Class weight (Coefficient=[0.50, 0.10, 0.40])](/images/HierarchicalCELoss(Conf0.5_0.1_0.4).png)
 
-* Trained as Regression using MSE Loss
-![Trained as Regression using MSE Loss](/images/Regression.png)
-
 ## Conclusion
 
-In this experimentations, achieve to improve the accuracy. 
+In this experimentations, the improvements are not clear. However, I guess when the number of classes is bigger than this example, it would be useful to make the results desireble. 
