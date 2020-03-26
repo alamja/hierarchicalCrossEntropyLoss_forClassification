@@ -3,7 +3,7 @@ Hierarchical CrossEntropy Loss function on PyTorch for taking account hierarchic
 
 ## Motivation
 I sometimes want to set hierarchical structured categories to our dataset. For example, when the labels are not completely independent (i.g. Progress recognition. When the labels are continuous numbers, and they have a connection with each others.), I believe we should measure the distance from the estimated labels to the right labels. The one conceivable way is to train the model as a Regression using MSE or the other Metrics for Regression. Because, it allows us to measure the difference between the answer and the estimated label. I guess it would be useful in some datasets.  
-However, I tried this approach for my own dataset. It didn't work well. Also, I couldn't find such a Loss function in PyTorch original implementation. So, it motivated me to develop custom Loss Function.
+However, I tried this approach for my own dataset. It didn't work well. Also, I could not find such a Loss function in PyTorch original implementation and could not find any implementation for Classification (I've found some implementations for NLP, but I wanted to make this Loss function more simple than them.). So, it motivated me to develop custom Loss Function.
 
 ## Environments
 I just used this version. I haven't confirmed if it works on the other versions.
