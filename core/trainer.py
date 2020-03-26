@@ -28,7 +28,7 @@ def _process_train_function(phase, epoch, model, writer, dataloaders, scheduler,
     return best_acc, best_model_wts
 
 def train_model(model, dataloaders, purpose, criterion, optimizer, scheduler, 
-                num_epochs, epoch_loss, epoch_acc, save_model_path, device, writer):
+                num_epochs, epoch_loss, epoch_acc, save_model_path, device, writer, class_num=None):
     since = time.time()
     
     model.to(device)
@@ -104,7 +104,7 @@ def train_model(model, dataloaders, purpose, criterion, optimizer, scheduler,
                         outputs = outputs.view(len(labels))
                         running_corrects += torch.sum(outputs == labels.data.int())
                 
-                best_acc, best_model_wts = _process_train_function(phase, epoch, model, viz, dataloaders, scheduler, 
+                best_acc, best_model_wts = _process_train_function(phase, epoch, model, writer, dataloaders, scheduler, 
                                                                    epoch_loss, epoch_acc, running_loss, running_corrects,
                                                                    best_acc, best_model_wts, save_model_path)
 
